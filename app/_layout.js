@@ -20,11 +20,7 @@ export default function Layout() {
             options={{
               title: "Home",
               tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="home"
-                  color={color}
-                  size={size}
-                />
+                <MaterialCommunityIcons name="home" color={color} size={size} />
               ),
             }}
           />

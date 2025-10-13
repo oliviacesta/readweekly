@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -10,7 +11,7 @@ import {
 import { useBooks } from "../context/BooksContext";
 
 export default function LibraryScreen() {
-  const { books, addBook, updateBookStatus } = useBooks();
+  const { books, addBook, updateBookStatus, deleteBook} = useBooks();
   const [newTitle, setNewTitle] = useState("");
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState("recent"); // recent | oldest | recentRead
@@ -110,6 +111,9 @@ export default function LibraryScreen() {
             <Text style={styles.bookItem}>
               {item.title} ({item.status})
             </Text>
+            <TouchableOpacity onPress={() => deleteBook(index)}>
+              <MaterialCommunityIcons name="trash-can-outline" size={24} color="red" />
+            </TouchableOpacity>
             <View style={styles.statusButtons}>
               <TouchableOpacity
                 style={styles.statusButton}
@@ -144,7 +148,12 @@ export default function LibraryScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16 },
-  heading: { fontSize: 24, marginBottom: 16, marginTop: 100, fontWeight: "bold" },
+  heading: {
+    fontSize: 24,
+    marginBottom: 16,
+    marginTop: 100,
+    fontWeight: "bold",
+  },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",

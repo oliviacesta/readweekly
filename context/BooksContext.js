@@ -39,10 +39,13 @@ export const BooksProvider = ({ children }) => {
       })
     );
   };
-  
+
+  const deleteBook = (index) => {
+    setBooks((prev) => prev.filter((_, i) => i !== index));
+  };
 
   return (
-    <BooksContext.Provider value={{ books, addBook, updateBookStatus}}>
+    <BooksContext.Provider value={{ books, addBook, updateBookStatus, deleteBook}}>
       {children}
     </BooksContext.Provider>
   );
