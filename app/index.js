@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import {
-  FlatList,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { useBooks } from "../context/BooksContext";
 
@@ -19,81 +16,8 @@ export default function LibraryScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>📚 Your Library!</Text>
+      <Text style={styles.heading}>📚 The app for booklovers</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter book title"
-        value={newTitle}
-        onChangeText={setNewTitle}
-      />
-      <TouchableOpacity
-        style={styles.addButton}
-        onPress={() => {
-          if (newTitle.trim() !== "") {
-            addBook(newTitle.trim());
-            setNewTitle("");
-          }
-        }}
-      >
-        <Text style={styles.addButtonText}>+ Add Book</Text>
-      </TouchableOpacity>
-
-      {/* Filter Buttons */}
-      <View style={styles.filterContainer}>
-        {["all", "to read", "read", "DNF"].map((status) => (
-          <TouchableOpacity
-            key={status}
-            style={[
-              styles.filterButton,
-              filter === status && styles.activeFilterButton,
-            ]}
-            onPress={() => setFilter(status)}
-          >
-            <Text style={styles.filterButtonText}>
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      {/* Book List */}
-      <FlatList
-        data={filteredBooks}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
-          <View style={styles.bookRow}>
-            <Text style={styles.bookItem}>
-              {item.title} ({item.status})
-            </Text>
-            <View style={styles.statusButtons}>
-              <TouchableOpacity
-                style={styles.statusButton}
-                onPress={() => updateBookStatus(index, "to read")}
-              >
-                <Text>To Read</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.statusButton}
-                onPress={() => updateBookStatus(index, "read")}
-              >
-                <Text>Read</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.statusButton}
-                onPress={() => updateBookStatus(index, "DNF")}
-              >
-                <Text>DNF</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-        ListEmptyComponent={
-          <Text style={{ textAlign: "center", marginTop: 20 }}>
-            No books found
-          </Text>
-        }
-      />
     </View>
   );
 }

@@ -7,7 +7,10 @@ export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
 
   const addBook = (title) => {
-    setBooks((prev) => [...prev, { title, status: 'to read', dateRead: null }]);
+    setBooks((prev) => [
+      ...prev,
+      { title, status: 'to read', dateRead: null, addedAt: Date.now() },
+    ]);
   };
 
   useEffect(() => {
