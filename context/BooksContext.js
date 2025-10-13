@@ -7,7 +7,7 @@ export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
 
   const addBook = (title) => {
-    setBooks((prev) => [...prev, { title, status: 'to read' }]);
+    setBooks((prev) => [...prev, { title, status: 'to read', dateRead: null }]);
   };
 
   useEffect(() => {
@@ -24,11 +24,19 @@ export const BooksProvider = ({ children }) => {
 
   const updateBookStatus = (index, status) => {
     setBooks((prev) =>
-      prev.map((book, i) =>
-        i === index ? { ...book, status } : book
-      )
+      prev.map((book, i) => {
+        if (i === index) {
+          return {
+            ...book,
+            status,
+            dateRead: status === "read" ? new Date().toISOString() : book.dateRead,
+          };
+        }
+        return book;
+      })
     );
   };
+  
 
   return (
     <BooksContext.Provider value={{ books, addBook, updateBookStatus}}>
