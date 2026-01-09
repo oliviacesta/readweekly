@@ -116,19 +116,19 @@ export default function LibraryScreen() {
             </TouchableOpacity>
             <View style={styles.statusButtons}>
               <TouchableOpacity
-                style={styles.statusButton}
+                style={[styles.statusButton, (item.status === 'to read') && styles.activeButton]}
                 onPress={() => updateBookStatus(index, "to read")}
               >
                 <Text>To Read</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.statusButton}
+                style={[styles.statusButton, (item.status === 'read') && styles.activeButton]}
                 onPress={() => updateBookStatus(index, "read")}
               >
                 <Text>Read</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.statusButton}
+                style={[styles.statusButton, (item.status === 'DNF') && styles.activeButton]}
                 onPress={() => updateBookStatus(index, "DNF")}
               >
                 <Text>DNF</Text>
@@ -147,6 +147,9 @@ export default function LibraryScreen() {
 }
 
 const styles = StyleSheet.create({
+  activeButton: {
+    borderColor: '#ADD8E6',
+  },
   container: { flex: 1, padding: 16 },
   heading: {
     fontSize: 24,
@@ -211,7 +214,8 @@ const styles = StyleSheet.create({
     width: 220,
   },
   statusButton: {
-    backgroundColor: "#ddd",
     padding: 6,
+    borderBottomWidth: 4,
+    borderColor: '#ddd'
   },
 });
