@@ -1,7 +1,7 @@
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 
 export default function HomeScreen() {
@@ -16,7 +16,11 @@ export default function HomeScreen() {
       colors={["#a6c8ff", "#1e3c72"]}
       style={styles.container}>
         <View style={styles.border}>
-          <Text style={styles.heading}>📚 The app for book lovers</Text>
+          <Text style={styles.heading}>The app for book lovers</Text>
+          <Image 
+          source={require("../assets/images/book.png")}
+          style={styles.image}
+          ></Image>
         </View>
     </LinearGradient>
   );
@@ -27,7 +31,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "black",
     flex: 1,
-    borderRadius: 8
+    borderRadius: 8,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   container: {
     flex: 1,
@@ -35,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   heading: {
-    fontSize: 36,
+    fontSize: 72,
     fontFamily: "Playfair",
     color: "#ffffff",
     marginBottom: 16,
@@ -47,4 +53,8 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 3, height: 3 },
     textShadowRadius: 4,
   },
+  image: {
+    height: 400,
+    width: 390,
+  }
 });

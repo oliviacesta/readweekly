@@ -11,7 +11,7 @@ export default function StatsScreen() {
   );
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#a6c8ff"}}>
       <Text>Books read this week: {booksReadThisWeek.length}</Text>
     </View>
   );

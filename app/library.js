@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   activeButton: {
     borderColor: '#ADD8E6',
   },
-  container: { flex: 1, padding: 16 },
+  container: { flex: 1, padding: 16, backgroundColor: "#a6c8ff"},
   heading: {
     fontSize: 24,
     marginBottom: 16,
