@@ -11,8 +11,12 @@ export default function StatsScreen() {
   );
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#a6c8ff"}}>
+    <View style={{ flex: 1, padding: 16, justifyContent: "center", alignItems: "center", backgroundColor: "#a6c8ff"}}>
       <Text>Books read this week: {booksReadThisWeek.length}</Text>
+      <Text>TO DO... Structure of this page: let readers choose goals as #pages, #books, or #mins read per week. 
+        Show an updated progress bar for the current week, and show progress from the past 4 weeks if 
+        requested. Maybe a calendar view showing past stats? Also add a running count of how many weeks 
+        in a row user has met their goal</Text>
     </View>
   );
 }

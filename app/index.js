@@ -1,10 +1,13 @@
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
+
 export default function HomeScreen() {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
     Playfair: require("../assets/fonts/PlayfairDisplay-SemiBold.ttf"),
   });
@@ -55,7 +58,7 @@ export default function HomeScreen() {
             source={require("../assets/images/book.png")}
             style={styles.image}
             ></Image>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => router.push("/stats")}>
               <Text style={styles.buttonText}>
                 Start tracking your reading
               </Text>
@@ -72,15 +75,17 @@ export default function HomeScreen() {
     padding: 16,
   },
   button: {
-    backgroundColor: '#A6C8FF',
-    borderWidth: 1,
+    backgroundColor: '#5FA8FF',
+    borderWidth: 2,
     borderColor: 'blue',
-    borderRadius: 4,
+    borderRadius: 8,
     padding: 4,
     width: 220,
+    height: 40,
     alignSelf: 'center',
     alignItems: 'center',
-    marginBottom: '30',
+    marginBottom: '20',
+    justifyContent: 'center',
   },
   buttonText: {
     color: 'blue'
@@ -88,6 +93,7 @@ export default function HomeScreen() {
   innerContainer: {
     flex: 1,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   border: {
     flex: 1,
