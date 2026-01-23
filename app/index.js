@@ -1,7 +1,7 @@
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 export default function HomeScreen() {
@@ -14,23 +14,23 @@ export default function HomeScreen() {
   const backgroundBooks = [
     {
       source: require("../assets/images/bookbackground1.png"),
-      left: -70,
-      top: -70,
+      left: -80,
+      top: -50,
     },
     {
       source: require("../assets/images/bookbackground2.png"),
-      left: 445,
-      top: -26,
+      left: 435,
+      top: -6,
     },
     {
       source: require("../assets/images/bookbackground3.png"),
-      left: 960,
-      top: 20,
+      left: 950,
+      top: 40,
     },
     {
       source: require("../assets/images/bookbackground4.png"),
-      left: 1480,
-      top: 60,
+      left: 1470,
+      top: 84,
     },
   ];
 
@@ -49,11 +49,18 @@ export default function HomeScreen() {
               ]}
             />
           ))}
-          <Text style={styles.heading}>The app for book lovers</Text>
-          <Image 
-          source={require("../assets/images/book.png")}
-          style={styles.image}
-          ></Image>
+          <View style={styles.innerContainer}>
+            <Text style={styles.heading}>The app for book lovers</Text>
+            <Image 
+            source={require("../assets/images/book.png")}
+            style={styles.image}
+            ></Image>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>
+                Start tracking your reading
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
     </LinearGradient>
   );
@@ -63,6 +70,24 @@ export default function HomeScreen() {
   container: {
     flex: 1,
     padding: 16,
+  },
+  button: {
+    backgroundColor: '#A6C8FF',
+    borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 4,
+    padding: 4,
+    width: 220,
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginBottom: '30',
+  },
+  buttonText: {
+    color: 'blue'
+  },
+  innerContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   border: {
     flex: 1,
@@ -75,7 +100,7 @@ export default function HomeScreen() {
     fontSize: 72,
     fontFamily: "Playfair",
     color: "#ffffff",
-    marginTop: 100,
+    marginTop: 60,
     textAlign: "center",
     textShadowColor: "rgba(0, 0, 0, 0.4)",
     textShadowOffset: { width: 3, height: 3 },
@@ -89,7 +114,7 @@ export default function HomeScreen() {
     transform: [{ rotate: "5deg" }],
   },
   image: {
-    height: 400,
-    width: 390,
+    width: 400,
+    resizeMode: "contain",
   },
 });
