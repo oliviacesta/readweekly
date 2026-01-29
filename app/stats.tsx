@@ -200,7 +200,7 @@ export default function StatsScreen() {
                 step={1}
                 value={incrementValue}
                 onValueChange={setIncrementValue}
-                minimumTrackTintColor="#2563EB"
+                minimumTrackTintColor="#10B981"
                 maximumTrackTintColor="#E5E7EB"
               />
             </View>
@@ -224,6 +224,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: "center",
     color: "#111827",
+    fontFamily: 'playfair',
   },
   buttonRow: {
     flexDirection: "row",
@@ -267,14 +268,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   startButton: {
-    backgroundColor: "#10B981",
+    backgroundColor: "#002ec5",
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: "center",
     marginBottom: 16,
   },
   clearButton: {
-    backgroundColor: "#EF4444",
+    backgroundColor: "#4b7bec",
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: "center",
