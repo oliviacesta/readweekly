@@ -12,36 +12,27 @@ const ProgressBar = ({ progress }: { progress: number }) => (
 
 export default function StatsScreen() {
   const { books } = useBooks();
-
-  // Goal settings
   const [timeframe, setTimeframe] = useState<"daily" | "weekly" | "monthly">("daily");
   const [goalType, setGoalType] = useState<"pages" | "books" | "minutes">("books");
   const [goalAmount, setGoalAmount] = useState<number>(1);
-
-  // Tracking
   const [progress, setProgress] = useState<number>(0);
   const [trackingStarted, setTrackingStarted] = useState<boolean>(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-
-  // Slider value for incrementing
   const [incrementValue, setIncrementValue] = useState<number>(1);
 
-  // Start tracking button
   const startTracking = () => {
     setTrackingStarted(true);
     setStartTime(new Date());
     setProgress(0);
   };
 
-  // Clear goal
   const clearGoal = () => {
     setTrackingStarted(false);
     setStartTime(null);
     setProgress(0);
   };
 
-  // Update timer every second
   useEffect(() => {
     if (!trackingStarted) return;
     const interval = setInterval(() => {
@@ -50,7 +41,6 @@ export default function StatsScreen() {
     return () => clearInterval(interval);
   }, [trackingStarted]);
 
-  // Calculate end of timeframe
   const getEndTime = () => {
     if (!startTime) return new Date();
     const end = new Date(startTime);
@@ -62,7 +52,6 @@ export default function StatsScreen() {
 
   const endTime = getEndTime();
 
-  // Calculate time left
   const getTimeLeft = () => {
     if (!trackingStarted) return "";
     const diff = endTime.getTime() - currentTime.getTime();
@@ -73,7 +62,6 @@ export default function StatsScreen() {
     return `${hours}h ${minutes}m ${seconds}s left to reach your goal`;
   };
 
-  // Filter books/pages/minutes based on timeframe
   const booksInTimeframe = books.filter((book: any) => {
     if (book.status !== "read" || !book.dateRead) return false;
     if (!trackingStarted || !startTime) return false;
@@ -81,14 +69,12 @@ export default function StatsScreen() {
     return dateRead >= startTime && dateRead <= endTime;
   });
 
-  // Determine progress
   let progressValue = progress;
   if (goalType === "books") progressValue = booksInTimeframe.length;
 
   const progressPercent = Math.min((progressValue / goalAmount) * 100, 100);
   const goalReached = progressValue >= goalAmount;
 
-  // Add progress manually (for pages/minutes)
   const addProgress = () => {
     if (!goalReached) setProgress((prev) => prev + incrementValue);
   };
@@ -97,7 +83,7 @@ export default function StatsScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Reading Goals</Text>
 
-      {/* Timeframe Buttons */}
+      {/* To Do: add callendar at the top */}
       <View style={styles.buttonRow}>
         {["daily", "weekly", "monthly"].map((tf) => (
           <TouchableOpacity
@@ -122,7 +108,6 @@ export default function StatsScreen() {
         ))}
       </View>
 
-      {/* Goal Type Buttons */}
       <View style={styles.buttonRow}>
         {["pages", "books", "minutes"].map((type) => (
           <TouchableOpacity
@@ -147,7 +132,6 @@ export default function StatsScreen() {
         ))}
       </View>
 
-      {/* Goal Amount */}
       <View style={{ marginBottom: 16 }}>
         <Text style={styles.label}>Goal Amount</Text>
         <TextInput
@@ -158,7 +142,6 @@ export default function StatsScreen() {
         />
       </View>
 
-      {/* Start / Clear Buttons */}
       {!trackingStarted ? (
         <TouchableOpacity style={styles.startButton} onPress={startTracking}>
           <Text style={styles.buttonText}>Start Tracking</Text>
@@ -169,7 +152,6 @@ export default function StatsScreen() {
         </TouchableOpacity>
       )}
 
-      {/* Progress Section */}
       {trackingStarted && (
         <>
           <Text style={styles.progressText}>
@@ -180,7 +162,6 @@ export default function StatsScreen() {
           <ProgressBar progress={progressPercent} />
           {!goalReached && <Text style={styles.remainingText}>{getTimeLeft()}</Text>}
 
-          {/* Manual increment buttons for pages/minutes */}
           {goalType !== "books" && !goalReached && (
             <View style={styles.buttons}>
               <TouchableOpacity style={styles.button} onPress={addProgress}>
@@ -189,7 +170,6 @@ export default function StatsScreen() {
             </View>
           )}
 
-          {/* Slider to adjust increment value */}
           {goalType !== "books" && (
             <View style={{ marginTop: 16 }}>
               <Text style={styles.label}>Edit the amount to add: {incrementValue}</Text>

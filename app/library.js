@@ -184,8 +184,10 @@ export default function LibraryScreen() {
                 </View>
 
                 <TextInput
+                  multiline
+                  numberOfLines={3}
                   style={styles.reviewInput}
-                  placeholder="Enter a review"
+                  placeholder="Write your review"
                   placeholderTextColor="#9CA3AF"
                 />
                 <TouchableOpacity

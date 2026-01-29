@@ -8,7 +8,6 @@ export default function SettingsScreen() {
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [newsUpdates, setNewsUpdates] = useState(false);
   const [promotions, setPromotions] = useState(false);
-
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [name, setName] = useState("");
